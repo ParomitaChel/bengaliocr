@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bengali OCR Webpage</title>
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
+<style>
+* {box-sizing: border-box;}
+
+body { 
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+  overflow: hidden;
+  background-image:url('static/image/wall.jpg');
+  padding: 20px 10px;
+}
+
+.header a {
+  float: left;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px; 
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+.header a.logo {
+    color: #ff7200;
+    font-size: 35px;
+    font-weight: 700;
+    font-family: Arial;
+    padding-left: 20px;
+    float: left;
+    padding-top: 10px;
+    margin-top: 5px
+}
+
+
+
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+.header-right {
+  float: right;
+
+}
+
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+    
+    
+  }
+  
+  .header-right {
+    float: none;
+    
+    
+  }
+}
+</style>
+
+
+</head>
+<body>
+
+<div class="header">
+  <a href="#default" class="logo">BengaliOCR</a>
+  <div class="header-right">
+    <a class="active" href="/index">Home</a>
+    <a href="/about_us">About</a>
+    <a href="#about">SERVICE</a>
+    <a href="#contact">DESIGN</a>
+    <a href="/contact_us">CONTACT</a>
+    
+   
+  </div>
+
+
+
+  
+</div>
+
+
+
+  
+
+
+
+
+<div class="main_result">
+
+
+<div style="text-align: center; padding-top: 20px;">
+    <h1>Bengali OCR Application</h1>
+    
+  </div>
+
+
+  
+
+
+  
+<div id="wrapper">
+    <div class="upload">
+<form method=post enctype=multipart/form-data>
+                           <input type="file" name="file" accept="image/*" onchange="preview_image(event)">
+                             <input type=submit  class ="btn btn-primary" value=Upload>
+                        </form>
+ <img id="output_image"/>
+
+</div>
+</div>
+
+
+
+    <div class="main-thing">
+
+<div class="preview">
+
+    <h1>Result:</h1>
+    {% if img_src %}
+        <p style="text-align:center;">
+            <img src="{{ img_src }} "></p>
+    {% endif %}
+
+
+
+    <script type='text/javascript'>
+        function preview_image(event)
+        {
+         var reader = new FileReader();
+         reader.onload = function()
+         {
+          var output = document.getElementById('output_image');
+          output.src = reader.result;
+         }
+         reader.readAsDataURL(event.target.files[0]);
+        }
+        </script>
+    
+
+</div>
+<div class="result">
+
+    {% if extracted_text %}
+    <h4 style="text-align:center";> The extracted text(editable) from the image above is:</h4>
+         <div contenteditable="true">
+              <p style="text-align:center; border: 2px dashed #555; padding: 1em 0;
+              margin: 1em 0; border-radius: 7px;">
+        <b> {{ extracted_text }} </b></p>
+  {% else %}
+  The extracted text will be displayed here
+        {% endif %}
+
+</div>
+</div>
+
+<div class="message">
+
+{{message1}}
+    
+
+</div>
+
+</div>
+</div>
+</body>
+</html>

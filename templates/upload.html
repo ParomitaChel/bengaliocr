@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Bengali OCR Application</title>
+      <link rel="stylesheet" href="static/style.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+      <nav>
+         <div class="menu-icon">
+            <span class="fas fa-bars"></span>
+         </div>
+         <div class="logo">
+            BengaliOCR
+         </div>
+         <div class="nav-items">
+            <li><a href="/index">HOME</a></li>
+            <li><a href="/about_us">ABOUT</a></li>
+            <li><a href="#">SERVICE</a></li>
+            <li><a href="#">DESIGN</a></li>
+            <li><a href="/contact_us">CONTACT</a></li>
+         </div>
+         <div class="search-icon">
+            <span class="fas fa-search"></span>
+         </div>
+         <div class="cancel-icon">
+            <span class="fas fa-times"></span>
+         </div>
+
+         <form action="https://www.google.com/search" method="GET">
+            <input type="text" name="q" placeholder="Google Search" value=""><br>
+            <button name="searchBtn" type="submit">Search</button>
+         </form>
+
+      </nav>
+      
+
+      <script>
+         const menuBtn = document.querySelector(".menu-icon span");
+         const searchBtn = document.querySelector(".search-icon");
+         const cancelBtn = document.querySelector(".cancel-icon");
+         const items = document.querySelector(".nav-items");
+         const form = document.querySelector("form");
+         menuBtn.onclick = ()=>{
+           items.classList.add("active");
+           menuBtn.classList.add("hide");
+           searchBtn.classList.add("hide");
+           cancelBtn.classList.add("show");
+         }
+         cancelBtn.onclick = ()=>{
+           items.classList.remove("active");
+           menuBtn.classList.remove("hide");
+           searchBtn.classList.remove("hide");
+           cancelBtn.classList.remove("show");
+           form.classList.remove("active");
+           cancelBtn.style.color = "#ff3d00";
+         }
+         searchBtn.onclick = ()=>{
+           form.classList.add("active");
+           searchBtn.classList.add("hide");
+           cancelBtn.classList.add("show");
+         }
+      </script>
+
+<style>
+   body{background-image:url('static/image/113_1.jpg'); background-size: cover; background-attachment: fixed;}
+   
+</style>
+
+<div style="text-align: center; padding-top: 20px; padding-bottom: 20px; color: #fff;">
+  <h1>Bengali OCR Application</h1>
+</div>
+
+<div class="paragraph">
+  <p style="color: #fff;">The BengaliOCR is a Online OCR service to converts any Bengali images of text documents <br>into editable files by using Optical Character Recognition (OCR).  </p>
+<h3 style="padding-top: 10px; color: white;">Upload any Image or PDF file</h3>
+</div>
+
+<div id="wrapper">
+  <div class="upload">
+<form method=post enctype=multipart/form-data>
+                         <input type="file" name="file" accept="image/*" onchange="preview_image(event)">
+                           <input type=submit  class ="btn btn-primary" value=Upload>
+                      </form>
+<img id="output_image"/>
+
+</div>
+</div>
+<div class="main-thing">
+
+<div class="preview">
+
+  <h3 style="text-align: center">Image Preview:</h3>
+  {% if img_src %}
+      <p style="text-align:center;">
+          <img src="{{ img_src }} "></p>
+  {% endif %}
+
+
+
+  <script type='text/javascript'>
+      function preview_image(event)
+      {
+       var reader = new FileReader();
+       reader.onload = function()
+       {
+        var output = document.getElementById('output_image');
+        output.src = reader.result;
+       }
+       reader.readAsDataURL(event.target.files[0]);
+      }
+      </script>
+  
+
+</div>
+<div class="result">
+
+  {% if extracted_text %}
+  <h4 style="text-align:center"> The extracted text(editable) from the image above is:</h4>
+       <div contenteditable="true">
+            <p style="text-align:center; border: 2px dashed #555; padding: 1em 0;
+            margin: 1em 0; border-radius: 7px;">
+      <b> {{ extracted_text }} </b></p>
+{% else %}
+The extracted text will be displayed here
+      {% endif %}
+
+</div>
+</div>
+
+<div class="message">
+
+  <h3 style="text-align: center">Word Count:</h3>
+  <b>
+  {{message1}}
+  </b>
+</div>
+
+  <!--- <div class="search-icon">
+            <span class="fas fa-search"></span>
+         </div>--->
+
+
+</div>
+<a href="/download" class="button_download">Download</a>
+
+
+
+
+      <form action="/search" method="post">
+            <input type="text" id="fname" name="fname" value=""><br>
+            <button name="searchBtn" type="submit">Word Search</button>
+         </form>
+
+<!---
+<b>
+<font color="white">{{forward_message}}</font>
+</b>
+--->
+<br>
+
+<b>
+   <font color="white">{{frequency_text_with_search}}</font>
+</b>
+
+<!-- Footer -->
+<div class="footer">
+
+   <footer class="page-footer font-small blue">
+   
+      <!-- Copyright -->
+      <div class="footer-copyright text-center py-3">© 2022 Copyright:
+        <a href="/"> Bengali OCR</a>
+      </div>
+      <!-- Copyright -->
+   
+      
+      
+    </footer>
+    <!-- Footer -->
+   
+    
+   
+   
+           </div>
+
+   </body>
+</html>

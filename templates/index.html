@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Bengali OCR Application</title>
+      <link rel="stylesheet" href="static/style.css">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+   </head>
+   <body>
+      <nav>
+         <div class="menu-icon">
+            <span class="fas fa-bars"></span>
+         </div>
+         <div class="logo">
+            BengaliOCR
+         </div>
+         <div class="nav-items">
+            <li><a href="/index">HOME</a></li>
+            <li><a href="/about_us">ABOUT</a></li>
+            <li><a href="#">SERVICE</a></li>
+            <li><a href="#">DESIGN</a></li>
+            <li><a href="/contact_us">CONTACT</a></li>
+         </div>
+         <div class="search-icon">
+            <span class="fas fa-search"></span>
+         </div>
+         <div class="cancel-icon">
+            <span class="fas fa-times"></span>
+         </div>
+         <form action="https://www.google.com/search" method="GET">
+            <input type="text" name="q" placeholder="Google Search" value=""><br>
+            <button name="searchBtn" type="submit">Search</button>
+         </form>
+      </nav>
+      
+
+	  
+	  
+      <script>
+         const menuBtn = document.querySelector(".menu-icon span");
+         const searchBtn = document.querySelector(".search-icon");
+         const cancelBtn = document.querySelector(".cancel-icon");
+         const items = document.querySelector(".nav-items");
+         const form = document.querySelector("form");
+         menuBtn.onclick = ()=>{
+           items.classList.add("active");
+           menuBtn.classList.add("hide");
+           searchBtn.classList.add("hide");
+           cancelBtn.classList.add("show");
+         }
+         cancelBtn.onclick = ()=>{
+           items.classList.remove("active");
+           menuBtn.classList.remove("hide");
+           searchBtn.classList.remove("hide");
+           cancelBtn.classList.remove("show");
+           form.classList.remove("active");
+           cancelBtn.style.color = "#ff3d00";
+         }
+         searchBtn.onclick = ()=>{
+           form.classList.add("active");
+           searchBtn.classList.add("hide");
+           cancelBtn.classList.add("show");
+         }
+      </script>
+      <style>
+         body{background-image:url('static/image/111_1.jpg'); background-size: cover; background-attachment: fixed;}
+         
+     </style>
+
+<div class="content">
+    <h1 style="color: #fff; padding-top: 20px; padding-bottom: 20px;" >Bengali OCR Application</h1>
+
+    <style>
+        h1 {text-align: center;}
+    </style>
+
+    <p class="par">A Project developed by
+          <br> Students of University of Calcutta
+        </p>
+
+    <style>
+        p {text-align: center; color: #fff; padding-bottom: 20px;}
+    </style>
+        <a href="/upload" class="button_home">Test OCR</a>
+
+
+        </div>
+
+   </body>
+</html>
