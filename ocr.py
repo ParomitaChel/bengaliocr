@@ -29,6 +29,7 @@ from cv2 import data
 import os
 from flask import send_file
 import numpy as np
+
 from pdf2image import convert_from_path
 from pdf_info import pdf_info_class
 
