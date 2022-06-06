@@ -15,6 +15,5 @@ Optical Character Recognition wep app using pytesseract and flask.
 2. heroku config:set TESSDATA_PREFIX=./.apt/usr/share/tesseract-ocr/4.00/tessdata
 3. Then Deploy
 
-* Deployed link--> [Ghost](https://ghost-ocr-text.herokuapp.com/)
 
 ## gHost ;)
